@@ -8,7 +8,7 @@
     "url": "http://github.com/eanplatter/forked"
   },
   "bin": {
-    "flavor": "dist/index.js"
+    "forked": "dist/index.js"
   },
   "scripts": {
     "build": "babel index.js -d dist",

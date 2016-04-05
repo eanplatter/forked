@@ -12,7 +12,7 @@ const github = new GitHubApi({
     host: 'api.github.com',
     timeout: 5000,
     headers: {
-        'user-agent': 'My-Cool-GitHub-App' // GitHub is happy with a unique user agent
+        'user-agent': 'forked'
     }
 })
 
