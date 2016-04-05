@@ -4,10 +4,7 @@ import GitHubApi from 'github'
 import parser from 'github-url-parse'
 
 const github = new GitHubApi({
-    // required
     version: '3.0.0',
-    // optional
-    debug: true,
     protocol: 'https',
     host: 'api.github.com',
     timeout: 5000,
@@ -31,13 +28,15 @@ if (index !== -1) {
   meta.repo = meta.repo.slice(0, index)
 }
 
-github.repos.fork({
-  user: meta.user,
-  repo: meta.repo,
-}, (err, res) => {
-  if (err) {
-    console.log('Hrmm, looks like something went wrong')
-  } else {
-    console.log('Hey it worked!')
-  }
-})
+console.log(meta)
+
+// github.repos.fork({
+//   user: meta.user,
+//   repo: meta.repo,
+// }, (err, res) => {
+//   if (err) {
+//     console.log('Hrmm, looks like something went wrong')
+//   } else {
+//     console.log('Hey it worked!')
+//   }
+// })
