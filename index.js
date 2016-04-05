@@ -36,8 +36,8 @@ github.repos.fork({
   repo: meta.repo,
 }, (err, res) => {
   if (err) {
-    console.log('Hrmm, looks like something went wrong', err)
+    console.log('Hrmm, looks like something went wrong')
   } else {
-    console.log('Hey it worked!', res)
+    console.log('Hey it worked!')
   }
 })
