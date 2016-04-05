@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/eanplatter/forked"
+    "url": "git+https://github.com/isaacs/yallist.git"
   },
   "bin": {
     "forked": "dist/index.js"

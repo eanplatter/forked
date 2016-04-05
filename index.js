@@ -20,11 +20,16 @@ github.authenticate({
     type: 'oauth',
     token: process.env.FORKED_TOKEN,
 })
-
-const rawUrl = shell.grep('"url": "', './package.json')
+console.log(shell.pwd())
+const gitPlus = shell.grep('git+', './package.json')
 const regex = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)
-const url = rawUrl.match(regex)
+const url = gitPlus.match(regex)
 const meta = parser(url[0])
+
+const index = meta.repo.indexOf('.git')
+if (index !== -1) {
+  meta.repo = meta.repo.slice(0, index)
+}
 
 github.repos.fork({
   user: meta.user,
