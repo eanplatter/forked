@@ -15,7 +15,10 @@
     "dev": "nodemon --exec \"npm start --silent\" --watch index.js",
     "prebuild": "rimraf dist",
     "prestart": "npm run build --silent",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "release:patch": "npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm version minor && npm publish && git push --follow-tags",
+    "release:major": "npm version major && npm publish && git push --follow-tags"
   },
   "author": "Ean Platter <eanplatter@gmail.com> (eanplatter.github.io)",
   "license": "MIT",
