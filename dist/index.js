@@ -30,17 +30,12 @@ github.authenticate({
   token: process.env.FORKED_TOKEN
 });
 
-var gitPlus = _shelljs2.default.grep('git+', './package.json');
-var regex = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi);
-var url = gitPlus.match(regex);
-var meta = (0, _githubUrlParse2.default)(url[0]);
+var meta = (0, _githubUrlParse2.default)(_shelljs2.default.exec('cat package.json | json repository.url').stdout);
 
 var index = meta.repo.indexOf('.git');
 if (index !== -1) {
   meta.repo = meta.repo.slice(0, index);
 }
-
-console.log(meta);
 
 github.repos.fork({
   user: meta.user,
