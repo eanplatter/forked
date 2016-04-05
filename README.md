@@ -15,10 +15,18 @@ made it so.
 
 # Getting Started
 
-Install the module:
+First, you need an access token from github so forked can log out in you can find instructions for that [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
+
+Then add it to your `.bashrc` file, or whatever you use to manage your env variables:
+```
+export FORKED_TOKEN='PUT_YOUR_ACCESS_TOKEN_HERE'
+```
+
+Then install the module:
 ```
 $ npm i -g forked
 ```
+
 
 Dive into some random node module:
 ```
