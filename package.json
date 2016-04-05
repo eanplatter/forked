@@ -7,6 +7,9 @@
     "type": "git",
     "url": "http://github.com/eanplatter/forked"
   },
+  "bin": {
+    "flavor": "dist/index.js"
+  },
   "scripts": {
     "build": "babel index.js -d dist",
     "dev": "nodemon --exec \"npm start --silent\" --watch index.js",
