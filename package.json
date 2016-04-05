@@ -1,14 +1,14 @@
 {
   "name": "forked",
-  "version": "0.0.5",
+  "version": "0.0.3",
   "description": "fork from the command line",
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isaacs/yallist.git"
+    "url": "http://github.com/eanplatter/forked"
   },
   "bin": {
-    "forked": "dist/index.js"
+    "fork": "dist/index.js"
   },
   "scripts": {
     "build": "babel index.js -d dist",
