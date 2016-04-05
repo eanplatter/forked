@@ -30,13 +30,13 @@ if (index !== -1) {
 
 console.log(meta)
 
-// github.repos.fork({
-//   user: meta.user,
-//   repo: meta.repo,
-// }, (err, res) => {
-//   if (err) {
-//     console.log('Hrmm, looks like something went wrong')
-//   } else {
-//     console.log('Hey it worked!')
-//   }
-// })
+github.repos.fork({
+  user: meta.user,
+  repo: meta.repo,
+}, (err, res) => {
+  if (err) {
+    console.log('Hrmm, looks like something went wrong')
+  } else {
+    console.log('Hey it worked!')
+  }
+})
