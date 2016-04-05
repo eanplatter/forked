@@ -1,6 +1,6 @@
 {
   "name": "forked",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "fork from the command line",
   "main": "dist/main.js",
   "repository": {
