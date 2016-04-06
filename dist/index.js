@@ -30,7 +30,27 @@ github.authenticate({
   token: process.env.FORKED_TOKEN
 });
 
-var meta = (0, _githubUrlParse2.default)(_shelljs2.default.exec('cat package.json | json repository.url').stdout);
+var packageJson = _shelljs2.default.cat('package.json');
+
+if (!packageJson) {
+  throw new Error('I couldn’t find a package.json file in this directory.');
+}
+
+var parsedPackage = void 0,
+    repositoryUrl = void 0;
+
+try {
+  parsedPackage = JSON.parse(packageJson);
+  repositoryUrl = parsedPackage.repository ? parsedPackage.repository.url : null;
+} catch (e) {
+  throw new Error('Looks like package.json couldn’t be parsed.');
+}
+
+if (!repositoryUrl) {
+  throw new Error('Looks like package.json doesn’t have a repository url.');
+}
+
+var meta = (0, _githubUrlParse2.default)(repositoryUrl);
 
 var index = meta.repo.indexOf('.git');
 if (index !== -1) {

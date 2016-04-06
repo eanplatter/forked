@@ -18,8 +18,26 @@ github.authenticate({
     token: process.env.FORKED_TOKEN,
 })
 
+const packageJson = shell.cat('package.json')
 
-const meta = parser(shell.exec('cat package.json | json repository.url').stdout)
+if (!packageJson) {
+  throw new Error('I couldn’t find a package.json file in this directory.')
+}
+
+let parsedPackage, repositoryUrl
+
+try {
+  parsedPackage = JSON.parse(packageJson)
+  repositoryUrl = parsedPackage.repository ? parsedPackage.repository.url : null
+} catch (e) {
+  throw new Error('Looks like package.json couldn’t be parsed.')
+}
+
+if (!repositoryUrl) {
+  throw new Error('Looks like package.json doesn’t have a repository url.')
+}
+
+const meta = parser(repositoryUrl)
 
 const index = meta.repo.indexOf('.git')
 if (index !== -1) {
