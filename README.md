@@ -13,6 +13,9 @@ Couldn't sleep, saw a tweet:
 
 Made it so.
 
+# But why?
+If you have ever needed to debug a node module you're using in your project it's a no brainer. If you find a bug in someone's project you might want to fix it and made a fork of it so you can then open a pull request.
+
 # Getting Started
 
 First, you need an access token from github so forked can log in. You can find instructions for that [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
