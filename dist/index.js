@@ -30,7 +30,7 @@ github.authenticate({
   token: process.env.FORKED_TOKEN
 });
 
-var meta = (0, _githubUrlParse2.default)(_shelljs2.default.exec('cat package.json | json repository.url').stdout);
+var meta = (0, _githubUrlParse2.default)(_shelljs2.default.exec('cat package.json | ./node_modules/json/lib/json.js repository.url').stdout);
 
 var index = meta.repo.indexOf('.git');
 if (index !== -1) {
