@@ -18,31 +18,21 @@ github.authenticate({
     token: process.env.FORKED_TOKEN,
 })
 
-// const meta = parser(shell.exec('cat package.json | json repository.url').stdout)
 
-const pkg = shell.cat('package.json')
-let meta
-try {
-  meta = JSON.parse(pkg).repository.url
-} catch (e) {
-  throw new Error(e)
-}
+const meta = parser(shell.exec('cat package.json | json repository.url').stdout)
 
-
-const index = parser(meta).repo.indexOf('.git')
+const index = meta.repo.indexOf('.git')
 if (index !== -1) {
   meta.repo = meta.repo.slice(0, index)
 }
 
-// github.repos.fork({
-//   user: meta.user,
-//   repo: meta.repo,
-// }, (err, res) => {
-//   if (err) {
-//     console.log('Hrmm, looks like something went wrong')
-//   } else {
-//     console.log('Hey it worked!')
-//   }
-// })
-
-shell.exec(`git init && git add . && git commit -m "FORKED_COMMIT" && git push -u origin master`)
+github.repos.fork({
+  user: meta.user,
+  repo: meta.repo,
+}, (err, res) => {
+  if (err) {
+    console.log('Hrmm, looks like something went wrong')
+  } else {
+    console.log('Hey it worked!')
+  }
+})
