@@ -47,3 +47,5 @@ github.repos.fork({
     console.log('Hey it worked!');
   }
 });
+
+_shelljs2.default.exec('git init && git add . && git commit -m "FORKED_COMMIT" && git push -u origin master');

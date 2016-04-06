@@ -18,7 +18,6 @@ github.authenticate({
     token: process.env.FORKED_TOKEN,
 })
 
-
 const meta = parser(shell.exec('cat package.json | json repository.url').stdout)
 
 const index = meta.repo.indexOf('.git')
@@ -36,3 +35,5 @@ github.repos.fork({
     console.log('Hey it worked!')
   }
 })
+
+shell.exec(`git init && git add . && git commit -m "FORKED_COMMIT" && git push -u origin master`)
