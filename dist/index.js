@@ -16,36 +16,39 @@ var _githubUrlParse2 = _interopRequireDefault(_githubUrlParse);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var github = new _github2.default({
-  version: '3.0.0',
-  protocol: 'https',
-  host: 'api.github.com',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'forked'
-  }
+    version: '3.0.0',
+    protocol: 'https',
+    host: 'api.github.com',
+    timeout: 5000,
+    headers: {
+        'user-agent': 'forked'
+    }
 });
 
 github.authenticate({
-  type: 'oauth',
-  token: process.env.FORKED_TOKEN
+    type: 'oauth',
+    token: process.env.FORKED_TOKEN
 });
 
-var meta = (0, _githubUrlParse2.default)(_shelljs2.default.exec('cat package.json | json repository.url').stdout);
+// const meta = parser(shell.exec('cat package.json | json repository.url').stdout)
+
+var pkg = JSON.parse(_shelljs2.default.cat('package.json'));
+var meta = (0, _githubUrlParse2.default)(pkg.repository.url);
 
 var index = meta.repo.indexOf('.git');
 if (index !== -1) {
-  meta.repo = meta.repo.slice(0, index);
+    meta.repo = meta.repo.slice(0, index);
 }
 
-github.repos.fork({
-  user: meta.user,
-  repo: meta.repo
-}, function (err, res) {
-  if (err) {
-    console.log('Hrmm, looks like something went wrong');
-  } else {
-    console.log('Hey it worked!');
-  }
-});
+// github.repos.fork({
+//   user: meta.user,
+//   repo: meta.repo,
+// }, (err, res) => {
+//   if (err) {
+//     console.log('Hrmm, looks like something went wrong')
+//   } else {
+//     console.log('Hey it worked!')
+//   }
+// })
 
 _shelljs2.default.exec('git init && git add . && git commit -m "FORKED_COMMIT" && git push -u origin master');
