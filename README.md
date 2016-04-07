@@ -1,8 +1,3 @@
-[![npm version](https://img.shields.io/npm/v/forked.svg?style=flat-square)](https://www.npmjs.org/package/forked)
-[![npm downloads](https://img.shields.io/npm/dm/forked.svg?style=flat-square)](http://npm-stat.com/charts.html?package=forked&from=2016-03-01)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](./LICENSE.md)
-
-
 <p align="center">
   <img alt="forked" src="http://i1264.photobucket.com/albums/jj488/eanplatter1/Screen%20Shot%202016-04-05%20at%2012.06.30%20AM_zpssrlsfz3e.png" width="546">
 </p>
@@ -10,6 +5,10 @@
 <p align="center">
   Fork all of the things.
 </p>
+
+[![npm version](https://img.shields.io/npm/v/forked.svg?style=flat-square)](https://www.npmjs.org/package/forked)
+[![npm downloads](https://img.shields.io/npm/dm/forked.svg?style=flat-square)](http://npm-stat.com/charts.html?package=forked&from=2016-03-01)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](./LICENSE.md)
 
 # What is this?
 Couldn't sleep, saw a tweet:
