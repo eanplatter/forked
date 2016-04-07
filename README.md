@@ -1,5 +1,10 @@
+[![npm version](https://img.shields.io/npm/v/forked.svg?style=flat-square)](https://www.npmjs.org/package/forked)
+[![npm downloads](https://img.shields.io/npm/dm/forked.svg?style=flat-square)](http://npm-stat.com/charts.html?package=forked&from=2016-03-01)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](./LICENSE.md)
+
+
 <p align="center">
-  <img alt="enclave" src="http://i1264.photobucket.com/albums/jj488/eanplatter1/Screen%20Shot%202016-04-05%20at%2012.06.30%20AM_zpssrlsfz3e.png" width="546">
+  <img alt="forked" src="http://i1264.photobucket.com/albums/jj488/eanplatter1/Screen%20Shot%202016-04-05%20at%2012.06.30%20AM_zpssrlsfz3e.png" width="546">
 </p>
 
 <p align="center">
@@ -7,7 +12,7 @@
 </p>
 
 # What is this?
-Couldn't sleep, saw a tweet: 
+Couldn't sleep, saw a tweet:
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/kentcdodds">@kentcdodds</a> Now wouldn&#39;t it be cool, if you could go into a repo in your node_modules and run `npm fork` and it would fork it on github.</p>&mdash; Merrick Christensen (@iammerrick) <a href="https://twitter.com/iammerrick/status/717194650629476353">April 5, 2016</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
