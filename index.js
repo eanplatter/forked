@@ -59,7 +59,7 @@ github.repos.fork({
 })
 
 function packagePath (dep) {
-  const cwd = process.cwd().match(/.*\/([^\/]+)/)[1]
+  const cwd = process.cwd().match(/([^\/\\]+$)/)[1]
   if (!dep || cwd == dep) { return 'package.json' }
 
   let pathsToTry = [

@@ -76,7 +76,7 @@ github.repos.fork({
 });
 
 function packagePath(dep) {
-  var cwd = process.cwd().match(/.*\/([^\/]+)/)[1];
+  var cwd = process.cwd().match(/([^\/\\]+$)/)[1];
   if (!dep || cwd == dep) {
     return 'package.json';
   }
