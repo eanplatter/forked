@@ -37,6 +37,10 @@ github.authenticate({
 });
 
 var args = process.argv.slice(2);
+if (args[0] == '-h') {
+  console.log('  Easy-peasy usage:\n    1. Navigate to directory of dependency you want to fork.\n    2. run `fork`\n\n  Lemon-squeezy usage:\n    1. From your project’s root directory, run `fork dependencyName`.');
+  process.exit();
+}
 var packageJson = _shelljs2.default.cat(packagePath(args[0]));
 
 if (!packageJson) {
