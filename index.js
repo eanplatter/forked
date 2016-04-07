@@ -3,6 +3,7 @@ import shell from 'shelljs'
 import GitHubApi from 'github'
 import parser from 'github-url-parse'
 import {statSync} from 'fs'
+import path from 'path'
 
 const github = new GitHubApi({
     version: '3.0.0',
@@ -59,9 +60,12 @@ github.repos.fork({
 
 function packagePath (dep) {
   const cwd = process.cwd().match(/.*\/([^\/]+)/)[1]
-  if (!dep || cwd == dep) { return './package.json' }
+  if (!dep || cwd == dep) { return 'package.json' }
 
-  let pathsToTry = [ `./${dep}/package.json`, `./node_modules/${dep}/package.json` ]
+  let pathsToTry = [
+    path.resolve(dep, 'package.json'),
+    path.resolve('node_modules', dep, 'package.json') ]
+
   let pathToReturn
 
   let packageFound = pathsToTry.some(path => {

@@ -15,6 +15,10 @@ var _githubUrlParse2 = _interopRequireDefault(_githubUrlParse);
 
 var _fs = require('fs');
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var github = new _github2.default({
@@ -33,7 +37,6 @@ github.authenticate({
 });
 
 var args = process.argv.slice(2);
-
 var packageJson = _shelljs2.default.cat(packagePath(args[0]));
 
 if (!packageJson) {
@@ -75,11 +78,13 @@ github.repos.fork({
 function packagePath(dep) {
   var cwd = process.cwd().match(/.*\/([^\/]+)/)[1];
   if (!dep || cwd == dep) {
-    return './package.json';
+    return 'package.json';
   }
 
-  var pathsToTry = ['./' + dep + '/package.json', './node_modules/' + dep + '/package.json'];
+  var pathsToTry = [_path2.default.resolve(dep, 'package.json'), _path2.default.resolve('node_modules', dep, 'package.json')];
+
   var pathToReturn = void 0;
+
   var packageFound = pathsToTry.some(function (path) {
     pathToReturn = path;
     try {
