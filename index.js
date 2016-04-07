@@ -2,6 +2,7 @@
 import shell from 'shelljs'
 import GitHubApi from 'github'
 import parser from 'github-url-parse'
+import {statSync} from 'fs'
 
 const github = new GitHubApi({
     version: '3.0.0',
@@ -18,7 +19,8 @@ github.authenticate({
     token: process.env.FORKED_TOKEN,
 })
 
-const packageJson = shell.cat('package.json')
+const args = process.argv.slice(2)
+const packageJson = shell.cat(packagePath(args[0]))
 
 if (!packageJson) {
   throw new Error('I couldn’t find a package.json file in this directory.')
@@ -54,3 +56,27 @@ github.repos.fork({
     console.log('Hey it worked!')
   }
 })
+
+function packagePath (dep) {
+  const cwd = process.cwd().match(/.*\/([^\/]+)/)[1]
+  if (!dep || cwd == dep) { return './package.json' }
+
+  let pathsToTry = [ `./${dep}/package.json`, `./node_modules/${dep}/package.json` ]
+  let pathToReturn
+
+  let packageFound = pathsToTry.some(path => {
+    pathToReturn = path
+    try {
+      return statSync(path).isFile()
+    }
+    catch (e) {
+      return false
+    }
+  })
+
+  if (packageFound) {
+    return pathToReturn
+  }
+
+  throw Error(`I couldn’t find the ${dep} dependency.`)
+}

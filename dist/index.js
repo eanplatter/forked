@@ -13,6 +13,8 @@ var _githubUrlParse = require('github-url-parse');
 
 var _githubUrlParse2 = _interopRequireDefault(_githubUrlParse);
 
+var _fs = require('fs');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var github = new _github2.default({
@@ -30,7 +32,9 @@ github.authenticate({
   token: process.env.FORKED_TOKEN
 });
 
-var packageJson = _shelljs2.default.cat('package.json');
+var args = process.argv.slice(2);
+
+var packageJson = _shelljs2.default.cat(packagePath(args[0]));
 
 if (!packageJson) {
   throw new Error('I couldn’t find a package.json file in this directory.');
@@ -67,3 +71,27 @@ github.repos.fork({
     console.log('Hey it worked!');
   }
 });
+
+function packagePath(dep) {
+  var cwd = process.cwd().match(/.*\/([^\/]+)/)[1];
+  if (!dep || cwd == dep) {
+    return './package.json';
+  }
+
+  var pathsToTry = ['./' + dep + '/package.json', './node_modules/' + dep + '/package.json'];
+  var pathToReturn = void 0;
+  var packageFound = pathsToTry.some(function (path) {
+    pathToReturn = path;
+    try {
+      return (0, _fs.statSync)(path).isFile();
+    } catch (e) {
+      return false;
+    }
+  });
+
+  if (packageFound) {
+    return pathToReturn;
+  }
+
+  throw Error('I couldn’t find the ' + dep + ' dependency.');
+}
