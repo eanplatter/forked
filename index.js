@@ -2,6 +2,8 @@
 import shell from 'shelljs'
 import GitHubApi from 'github'
 import parser from 'github-url-parse'
+import {statSync} from 'fs'
+import path from 'path'
 
 const github = new GitHubApi({
     version: '3.0.0',
@@ -18,7 +20,18 @@ github.authenticate({
     token: process.env.FORKED_TOKEN,
 })
 
-const packageJson = shell.cat('package.json')
+const args = process.argv.slice(2)
+if (args.indexOf('-h') !== -1 || args.indexOf('--help') !== -1) {
+  console.log(`  Easy-peasy usage:
+    1. Navigate to directory of dependency you want to fork:
+      \`cd project/node_modules/dependencyName\`
+    2. Run: \`fork\`
+
+  Lemon-squeezy usage:
+    1. From anywhere, run: \`fork path/to/dependency\`.`)
+  process.exit()
+}
+const packageJson = shell.cat(packagePath(args[0]))
 
 if (!packageJson) {
   throw new Error('I couldn’t find a package.json file in this directory.')
@@ -54,3 +67,8 @@ github.repos.fork({
     console.log('Hey it worked!')
   }
 })
+
+function packagePath (dep) {
+  if (!dep) { return 'package.json' }
+  return path.resolve(dep, 'package.json')
+}

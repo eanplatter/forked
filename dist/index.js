@@ -13,6 +13,12 @@ var _githubUrlParse = require('github-url-parse');
 
 var _githubUrlParse2 = _interopRequireDefault(_githubUrlParse);
 
+var _fs = require('fs');
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var github = new _github2.default({
@@ -30,7 +36,12 @@ github.authenticate({
   token: process.env.FORKED_TOKEN
 });
 
-var packageJson = _shelljs2.default.cat('package.json');
+var args = process.argv.slice(2);
+if (args.indexOf('-h') !== -1 || args.indexOf('--help') !== -1) {
+  console.log('  Easy-peasy usage:\n    1. Navigate to directory of dependency you want to fork:\n      `cd project/node_modules/dependencyName`\n    2. Run: `fork`\n\n  Lemon-squeezy usage:\n    1. From anywhere, run: `fork path/to/dependency`.');
+  process.exit();
+}
+var packageJson = _shelljs2.default.cat(packagePath(args[0]));
 
 if (!packageJson) {
   throw new Error('I couldn’t find a package.json file in this directory.');
@@ -67,3 +78,10 @@ github.repos.fork({
     console.log('Hey it worked!');
   }
 });
+
+function packagePath(dep) {
+  if (!dep) {
+    return 'package.json';
+  }
+  return _path2.default.resolve(dep, 'package.json');
+}
