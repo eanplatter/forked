@@ -80,27 +80,8 @@ github.repos.fork({
 });
 
 function packagePath(dep) {
-  var cwd = process.cwd().match(/([^\/\\]+$)/)[1];
-  if (!dep || cwd == dep) {
+  if (!dep) {
     return 'package.json';
   }
-
-  var pathsToTry = [_path2.default.resolve(dep, 'package.json'), _path2.default.resolve('node_modules', dep, 'package.json')];
-
-  var pathToReturn = void 0;
-
-  var packageFound = pathsToTry.some(function (path) {
-    pathToReturn = path;
-    try {
-      return (0, _fs.statSync)(path).isFile();
-    } catch (e) {
-      return false;
-    }
-  });
-
-  if (packageFound) {
-    return pathToReturn;
-  }
-
-  throw Error('I couldn’t find the ' + dep + ' dependency.');
+  return _path2.default.resolve(dep, 'package.json');
 }

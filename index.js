@@ -68,28 +68,6 @@ github.repos.fork({
 })
 
 function packagePath (dep) {
-  const cwd = process.cwd().match(/([^\/\\]+$)/)[1]
-  if (!dep || cwd === dep) { return 'package.json' }
-
-  let pathsToTry = [
-    path.resolve(dep, 'package.json'),
-    path.resolve('node_modules', dep, 'package.json') ]
-
-  let pathToReturn
-
-  let packageFound = pathsToTry.some(path => {
-    pathToReturn = path
-    try {
-      return statSync(path).isFile()
-    }
-    catch (e) {
-      return false
-    }
-  })
-
-  if (packageFound) {
-    return pathToReturn
-  }
-
-  throw Error(`I couldn’t find the ${dep} dependency.`)
+  if (!dep) { return 'package.json' }
+  return path.resolve(dep, 'package.json')
 }
