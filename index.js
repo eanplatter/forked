@@ -23,11 +23,12 @@ github.authenticate({
 const args = process.argv.slice(2)
 if (args.indexOf('-h') !== -1 || args.indexOf('--help') !== -1) {
   console.log(`  Easy-peasy usage:
-    1. Navigate to directory of dependency you want to fork.
-    2. run \`fork\`
+    1. Navigate to directory of dependency you want to fork:
+      \`cd project/node_modules/dependencyName\`
+    2. Run: \`fork\`
 
   Lemon-squeezy usage:
-    1. From your project’s root directory, run \`fork dependencyName\`.`)
+    1. From anywhere, run: \`fork path/to/dependency\`.`)
   process.exit()
 }
 const packageJson = shell.cat(packagePath(args[0]))
