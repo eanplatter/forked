@@ -64,7 +64,8 @@ github.repos.fork({
   if (err) {
     console.log('Hrmm, looks like something went wrong')
   } else {
-    console.log('Hey it worked!')
+    console.log(`  Done. Your fork is available at:
+      ${res && res.html_url ? res.html_url : '¯\\_(ツ)_/¯'}`)
   }
 })
 
