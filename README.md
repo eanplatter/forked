@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Fork all of the things.
+  Fork all of the things
 </p>
 
 <p align="center">
