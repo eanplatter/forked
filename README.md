@@ -5,7 +5,6 @@
 <p align="center">
   Fork all of the things
 </p>
-
 <p align="center">
   <a href='https://www.npmjs.org/package/forked'>
     <img src="https://img.shields.io/npm/v/forked.svg?style=flat-square" />
