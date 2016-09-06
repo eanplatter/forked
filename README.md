@@ -51,5 +51,4 @@ $ fork
 ```
 
 If it worked, you should be able to see the fork on GitHub.
-
 Currently doesn't work on some repositories. Had some weird redirect issues and such, but about 80% of the repos I tried worked, so that's nice. If you find a bug please document it in the issues :)
