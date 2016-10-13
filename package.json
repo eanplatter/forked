@@ -4,8 +4,8 @@
   "description": "fork from the command line",
   "main": "dist/index.js",
   "repository": {
-    "type": "git",
-    "url": "http://github.com/eanplatter/forked"
+    "url": "http://github.com/eanplatter/forked",
+    "type": "git"
   },
   "bin": {
     "fork": "dist/index.js"
