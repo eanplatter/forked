@@ -30,6 +30,10 @@ If you have ever needed to debug a node module you're using in your project it's
 
 First, you need an access token from github so forked can log in. You can find instructions for that [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
 
+Make sure to give your token public repo privileges.
+
+![Add repo privileges](./forked-repo-privileges.png)
+
 Then add it to your `.bashrc` file, or whatever you use to manage your env variables:
 ```
 export FORKED_TOKEN='PUT_YOUR_ACCESS_TOKEN_HERE'
