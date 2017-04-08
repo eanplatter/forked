@@ -1,6 +1,6 @@
 {
   "name": "forked",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "fork from the command line",
   "main": "dist/index.js",
   "repository": {
