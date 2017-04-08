@@ -19,6 +19,10 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _copyPaste = require('copy-paste');
+
+var _copyPaste2 = _interopRequireDefault(_copyPaste);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var github = new _github2.default({
@@ -75,7 +79,11 @@ github.repos.fork({
   if (err) {
     console.log('Hrmm, looks like something went wrong');
   } else {
-    console.log('  Done. Your fork is available at:\n      ' + (res && res.html_url ? res.html_url : '¯\\_(ツ)_/¯'));
+    var url = res && res.html_url ? res.html_url : '¯\\_(ツ)_/¯';
+    _copyPaste2.default.copy(url, function () {
+      console.log('  ... and use cmd + v to paste your new URL :)');
+    });
+    console.log('  Done. Your fork is available at: ' + url);
   }
 });
 
