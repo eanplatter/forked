@@ -3,6 +3,7 @@ import shell from 'shelljs'
 import GitHubApi from 'github'
 import {statSync} from 'fs'
 import path from 'path'
+import ncp from 'copy-paste'
 
 const github = new GitHubApi({
     version: '3.0.0',
@@ -67,8 +68,11 @@ github.repos.fork({
   if (err) {
     console.log('Hrmm, looks like something went wrong')
   } else {
-    console.log(`  Done. Your fork is available at:
-      ${res && res.html_url ? res.html_url : '¯\\_(ツ)_/¯'}`)
+    const url = res && res.html_url ? res.html_url : '¯\\_(ツ)_/¯';
+    ncp.copy(url, function () {
+      console.log('  ... and use cmd + v to paste your new URL :)');
+    })
+    console.log(`  Done. Your fork is available at: ${url}`)
   }
 })
 
