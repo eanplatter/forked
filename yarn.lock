@@ -1063,7 +1063,7 @@ getpass@^0.1.1:
 
 github-url-parse@^0.1.0:
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/github-url-parse/-/github-url-parse-0.1.0.tgz#1f7109d10f251390777f6130ead57342d283ea8f"
+  resolved "https://registry.npmjs.org/github-url-parse/-/github-url-parse-0.1.0.tgz#1f7109d10f251390777f6130ead57342d283ea8f"
 
 github@^0.2.4:
   version "0.2.4"

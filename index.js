@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import shell from 'shelljs'
 import GitHubApi from 'github'
-import parser from 'github-url-parse'
 import {statSync} from 'fs'
 import path from 'path'
 import ncp from 'copy-paste'
@@ -51,8 +50,12 @@ if (!repositoryUrl) {
   throw new Error('Looks like package.json doesn’t have a repository url.')
 }
 
-const meta = parser(repositoryUrl)
-
+const tail = repositoryUrl.replace(/.*github.com./, '');
+const tailParts = tail.split('/');
+const meta = {
+  user: tailParts[tailParts.length - 2],
+  repo: tailParts[tailParts.length - 1]
+};
 const index = meta.repo.indexOf('.git')
 if (index !== -1) {
   meta.repo = meta.repo.slice(0, index)
