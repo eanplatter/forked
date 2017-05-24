@@ -9,10 +9,6 @@ var _github = require('github');
 
 var _github2 = _interopRequireDefault(_github);
 
-var _githubUrlParse = require('github-url-parse');
-
-var _githubUrlParse2 = _interopRequireDefault(_githubUrlParse);
-
 var _fs = require('fs');
 
 var _path = require('path');
@@ -61,8 +57,12 @@ if (!repositoryUrl) {
   throw new Error('Looks like package.json doesn’t have a repository url.');
 }
 
-var meta = (0, _githubUrlParse2.default)(repositoryUrl);
-
+var tail = repositoryUrl.replace(/.*github.com./, '');
+var tailParts = tail.split('/');
+var meta = {
+  user: tailParts[tailParts.length - 2],
+  repo: tailParts[tailParts.length - 1]
+};
 var index = meta.repo.indexOf('.git');
 if (index !== -1) {
   meta.repo = meta.repo.slice(0, index);
